@@ -84,6 +84,8 @@
     reference <- .averageMassSpectra(trim(l, range=range), fun=.colMedians,
                                      mergeMetaData=FALSE)
   }
+      } else {
+      print('use given ref spectrum')
       }
     
 
