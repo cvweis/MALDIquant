@@ -77,13 +77,14 @@
   l <- calibrateIntensity(l, method="TIC", range=range)
   ## CW: skip reference spectrum calculation if reference spectrum is given
   if (missing(reference)) {  
+      print('calculate ref spectrum')
   ## 2. median reference spectrum
-  if (missing(range)) {
-    reference <- .averageMassSpectra(l, fun=.colMedians, mergeMetaData=FALSE)
-  } else {
-    reference <- .averageMassSpectra(trim(l, range=range), fun=.colMedians,
-                                     mergeMetaData=FALSE)
-  }
+      if (missing(range)) {
+        reference <- .averageMassSpectra(l, fun=.colMedians, mergeMetaData=FALSE)
+      } else {
+        reference <- .averageMassSpectra(trim(l, range=range), fun=.colMedians,
+                                         mergeMetaData=FALSE)
+      }
       } else {
       print('use given ref spectrum')
       }
