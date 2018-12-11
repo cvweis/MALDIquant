@@ -72,9 +72,11 @@
 ## returns:
 ##  list of calibrated MassSpectrum objects
 ##
-.calibrateProbabilisticQuotientNormalization <- function(l, range) {
+.calibrateProbabilisticQuotientNormalization <- function(l, reference, range) {
   ## 1. integral normalization (==TIC)
   l <- calibrateIntensity(l, method="TIC", range=range)
+  ## CW: skip reference spectrum calculation if reference spectrum is given
+  if (missing(reference)) {  
   ## 2. median reference spectrum
   if (missing(range)) {
     reference <- .averageMassSpectra(l, fun=.colMedians, mergeMetaData=FALSE)
@@ -82,6 +84,8 @@
     reference <- .averageMassSpectra(trim(l, range=range), fun=.colMedians,
                                      mergeMetaData=FALSE)
   }
+      }
+    
 
   lapply(l, function(x) {
     ## 3. quotient calculation
