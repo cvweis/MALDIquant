@@ -75,7 +75,11 @@
 .calibrateProbabilisticQuotientNormalization <- function(l, range, reference) {
   ## 1. integral normalization (==TIC)
   l <- calibrateIntensity(l, method="TIC", range=range)
-
+  if (!missing(reference)) {
+      reference <- calibrateIntensity(reference, method="TIC", range=range)
+      }
+    
+    
   if (missing(reference)) {  
       ## 2A. median reference spectrum from data l
       print('calc ref spectrum from data')
