@@ -25,7 +25,7 @@ setMethod(f="calibrateIntensity",
 setMethod(f="calibrateIntensity",
           signature=signature(object="list"),
           definition=function(object,
-                              method=c("TIC", "PQN", "median"), range, ...) {
+                              method=c("TIC", "PQN", "median"), range, reference, ...) {
 
   ## test arguments
   .stopIfNotIsMassSpectrumList(object)
@@ -38,7 +38,7 @@ setMethod(f="calibrateIntensity",
       lapply(object, calibrateIntensity, method=method, range=range, ...)
     },
     "PQN" = {
-      .calibrateProbabilisticQuotientNormalization(object, range=range)
+      .calibrateProbabilisticQuotientNormalization(object, range=range, reference=reference)
     }
   )
 })
