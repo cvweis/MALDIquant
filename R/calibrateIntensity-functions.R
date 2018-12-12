@@ -78,7 +78,7 @@
 
   if (missing(reference)) {  
       ## 2A. median reference spectrum from data l
-      print('calc ref spectrum ')
+      print('calc ref spectrum from data')
     
       if (missing(range)) {
         reference <- .averageMassSpectra(l, fun=.colMedians, mergeMetaData=FALSE)
@@ -88,7 +88,7 @@
       }
       } else {
       ## 2B. median reference spectrum from reference spectra list
-      print('use given ref spectrum')
+      print('calc ref spectrum from provided ref spectra')
       if (missing(range)) {
         reference <- .averageMassSpectra(reference, fun=.colMedians, mergeMetaData=FALSE)
       } else {
@@ -100,8 +100,8 @@
 
   lapply(l, function(x) {
     ## 3. quotient calculation
-      print(approxfun(x))
-      print(approxfun(x)(reference@mass))
+#       print(approxfun(x))
+#       print(approxfun(x)(reference@mass))
     q <- approxfun(x)(reference@mass) / reference@intensity
     ## 4. median
     m <- median(q, na.rm=TRUE)
