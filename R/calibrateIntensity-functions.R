@@ -92,6 +92,8 @@
 
   lapply(l, function(x) {
     ## 3. quotient calculation
+      print(approxfun(x))
+      print(approxfun(x)(reference@mass))
     q <- approxfun(x)(reference@mass) / reference@intensity
     ## 4. median
     m <- median(q, na.rm=TRUE)
